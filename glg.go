@@ -1235,8 +1235,12 @@ func (g *Glg) Println(val ...interface{}) error {
 }
 
 // Printf outputs formatted Print log
-func (g *Glg) Printf(format string, val ...interface{}) error {
-	return g.out(PRINT, format, val...)
+//func (g *Glg) Printf(format string, val ...interface{}) error {
+//	return g.out(PRINT, format, val...)
+//}
+
+func (g *Glg) Printf(format string, val ...interface{}) {
+	g.out(PRINT, format, val...)
 }
 
 // PrintFunc outputs Print log returned from the function

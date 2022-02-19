@@ -3192,7 +3192,7 @@ func TestGlg_Printf(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			buf := new(bytes.Buffer)
 			g := New().SetMode(WRITER).SetWriter(buf)
-			err := g.Printf(tt.format, tt.val...)
+			err := g.Infof(tt.format, tt.val...)
 			want := fmt.Sprintf(tt.format, tt.val...)
 			if err != nil {
 				t.Errorf("Glg.Printf() unexpected error: %v", err)
