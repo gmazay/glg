@@ -26,7 +26,7 @@ import (
 	"log"
 	"testing"
 
-	"github.com/kpango/glg"
+	"github.com/gmazay/glg"
 	"github.com/sirupsen/logrus"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
