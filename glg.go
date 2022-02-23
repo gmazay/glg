@@ -501,6 +501,31 @@ func (g *Glg) AddLevelWriter(level LEVEL, writer io.Writer) *Glg {
 	return g
 }
 
+// AddLevelWriters adds writers whose level is greater than the minLevel
+func (g *Glg) AddLevelWriters(minLevel uint8, infolog, errlog io.Writer) *Glg {
+	if infolog == nil {
+		return g
+	}
+	// info: DEBG TRACE PRINT LOG INFO OK //
+	for level := minLevel; level <= 6; level++ {
+		g.AddLevelWriter(LEVEL(level), infolog)
+	}
+	var errLevel uint8 = 7
+	if minLevel >= 7 {
+		errLevel = minLevel
+	}
+	// err: WARN ERR FAIL FATAL //
+	for level := errLevel; level <= 10; level++ {
+		if errlog != nil {
+			g.AddLevelWriter(LEVEL(level), errlog)
+		} else {
+			g.AddLevelWriter(LEVEL(level), infolog)
+		}
+	}
+
+	return g
+}
+
 // AddStdLevel adds std log level and returns LEVEL
 func (g *Glg) AddStdLevel(tag string, mode MODE, isColor bool) *Glg {
 	return g.addLevel(tag, mode, isColor, os.Stdout)
